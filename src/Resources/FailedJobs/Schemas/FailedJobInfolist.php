@@ -2,10 +2,10 @@
 
 namespace BinaryBuilds\FilamentFailedJobs\Resources\FailedJobs\Schemas;
 
+use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Group;
 use Filament\Schemas\Components\Section;
-use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
 class FailedJobInfolist
