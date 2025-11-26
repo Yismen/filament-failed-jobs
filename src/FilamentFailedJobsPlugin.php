@@ -78,35 +78,35 @@ class FilamentFailedJobsPlugin implements Plugin
         //
     }
 
-    public function authorize(bool|Closure $callback): static
+    public function authorize(bool | Closure $callback): static
     {
         $this->authorized = $callback;
 
         return $this;
     }
 
-    public function navigationGroup(string|UnitEnum|Closure $group): static
+    public function navigationGroup(string | UnitEnum | Closure $group): static
     {
         $this->navigationGroup = $group;
 
         return $this;
     }
 
-    public function navigationIcon(string|BackedEnum|Closure $icon): static
+    public function navigationIcon(string | BackedEnum | Closure $icon): static
     {
         $this->navigationIcon = $icon;
 
         return $this;
     }
 
-    public function navigationLabel(string|Closure $label): static
+    public function navigationLabel(string | Closure $label): static
     {
         $this->navigationLabel = $label;
 
         return $this;
     }
 
-    public function navigationSort(int|Closure $sort): static
+    public function navigationSort(int | Closure $sort): static
     {
         $this->navigationSort = $sort;
 

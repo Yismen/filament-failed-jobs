@@ -13,7 +13,7 @@ class ManagesJobsTestClass
 }
 
 beforeEach(function () {
-    $this->manager = new ManagesJobsTestClass();
+    $this->manager = new ManagesJobsTestClass;
     actingAs($this->testUser);
 });
 
@@ -23,7 +23,7 @@ describe('retryJobs', function () {
             (object) ['uuid' => 'test-uuid-1'],
         ]);
 
-        $command = 'queue:retry '.$jobs->pluck('uuid')->implode(' ');
+        $command = 'queue:retry ' . $jobs->pluck('uuid')->implode(' ');
 
         expect($command)->toBe('queue:retry test-uuid-1');
     });
@@ -35,7 +35,7 @@ describe('retryJobs', function () {
             (object) ['uuid' => 'uuid-3'],
         ]);
 
-        $command = 'queue:retry '.$jobs->pluck('uuid')->implode(' ');
+        $command = 'queue:retry ' . $jobs->pluck('uuid')->implode(' ');
 
         expect($command)->toBe('queue:retry uuid-1 uuid-2 uuid-3');
     });
@@ -43,7 +43,7 @@ describe('retryJobs', function () {
     it('handles empty collection', function () {
         $jobs = collect([]);
 
-        $command = 'queue:retry '.$jobs->pluck('uuid')->implode(' ');
+        $command = 'queue:retry ' . $jobs->pluck('uuid')->implode(' ');
 
         expect($command)->toBe('queue:retry ');
     });
@@ -66,8 +66,8 @@ describe('deleteJobs', function () {
 
         $job = (object) ['uuid' => 'test-uuid'];
         $command = FilamentFailedJobsPlugin::get()->isUsingHorizon()
-            ? 'horizon:forget '.$job->uuid
-            : 'queue:forget '.$job->uuid;
+            ? 'horizon:forget ' . $job->uuid
+            : 'queue:forget ' . $job->uuid;
 
         expect($command)->toBe('queue:forget test-uuid');
     });
@@ -77,8 +77,8 @@ describe('deleteJobs', function () {
 
         $job = (object) ['uuid' => 'test-uuid'];
         $command = FilamentFailedJobsPlugin::get()->isUsingHorizon()
-            ? 'horizon:forget '.$job->uuid
-            : 'queue:forget '.$job->uuid;
+            ? 'horizon:forget ' . $job->uuid
+            : 'queue:forget ' . $job->uuid;
 
         expect($command)->toBe('horizon:forget test-uuid');
 
@@ -94,7 +94,7 @@ describe('deleteJobs', function () {
 
         $commands = [];
         foreach ($jobs as $job) {
-            $commands[] = 'queue:forget '.$job->uuid;
+            $commands[] = 'queue:forget ' . $job->uuid;
         }
 
         expect($commands)->toHaveCount(3);
@@ -108,7 +108,7 @@ describe('deleteJobs', function () {
 
         $commands = [];
         foreach ($jobs as $job) {
-            $commands[] = 'queue:forget '.$job->uuid;
+            $commands[] = 'queue:forget ' . $job->uuid;
         }
 
         expect($commands)->toBeEmpty();
@@ -127,8 +127,8 @@ describe('command construction', function () {
         $commands = [];
         foreach ($jobs as $job) {
             $command = FilamentFailedJobsPlugin::get()->isUsingHorizon()
-                ? 'horizon:forget '.$job->uuid
-                : 'queue:forget '.$job->uuid;
+                ? 'horizon:forget ' . $job->uuid
+                : 'queue:forget ' . $job->uuid;
             $commands[] = $command;
         }
 

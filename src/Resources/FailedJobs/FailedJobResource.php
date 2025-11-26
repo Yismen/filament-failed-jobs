@@ -11,7 +11,6 @@ use BinaryBuilds\FilamentFailedJobs\Resources\FailedJobs\Schemas\FailedJobInfoli
 use BinaryBuilds\FilamentFailedJobs\Resources\FailedJobs\Tables\FailedJobsTable;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
@@ -43,7 +42,7 @@ class FailedJobResource extends Resource
         return static::getPlugin()->isAuthorized();
     }
 
-    public static function getNavigationGroup(): string|UnitEnum|null
+    public static function getNavigationGroup(): string | UnitEnum | null
     {
         return static::getPlugin()->getNavigationGroup();
     }
@@ -58,7 +57,7 @@ class FailedJobResource extends Resource
         return static::getPlugin()->getNavigationSort();
     }
 
-    public static function getNavigationIcon(): string|BackedEnum|null
+    public static function getNavigationIcon(): string | BackedEnum | null
     {
         return static::getPlugin()->getNavigationIcon();
     }

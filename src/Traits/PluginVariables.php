@@ -14,27 +14,27 @@ trait PluginVariables
 {
     use EvaluatesClosures;
 
-    public bool|Closure $authorized = true;
+    public bool | Closure $authorized = true;
 
-    public string|UnitEnum|Closure|null $navigationGroup = null;
+    public string | UnitEnum | Closure | null $navigationGroup = null;
 
-    public string|BackedEnum|Closure $navigationIcon = Heroicon::QueueList;
+    public string | BackedEnum | Closure $navigationIcon = Heroicon::QueueList;
 
-    public string|Closure|null $navigationLabel = null;
+    public string | Closure | null $navigationLabel = null;
 
-    public int|Closure $navigationSort = 9999;
+    public int | Closure $navigationSort = 9999;
 
     public function isAuthorized(): bool
     {
         return (bool) $this->evaluate($this->authorized);
     }
 
-    public function getNavigationGroup(): string|UnitEnum|null
+    public function getNavigationGroup(): string | UnitEnum | null
     {
         return $this->evaluate($this->navigationGroup);
     }
 
-    public function getNavigationIcon(): string|BackedEnum
+    public function getNavigationIcon(): string | BackedEnum
     {
         /** @var string|BackedEnum */
         return $this->evaluate($this->navigationIcon);

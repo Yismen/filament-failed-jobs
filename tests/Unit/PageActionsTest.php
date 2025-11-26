@@ -12,16 +12,16 @@ beforeEach(function () {
 
 describe('queue options building', function () {
     it('builds queue options from database', function () {
-        $job1 = new FailedJob();
-        $job1->uuid = 'retry-option-1-'.uniqid();
+        $job1 = new FailedJob;
+        $job1->uuid = 'retry-option-1-' . uniqid();
         $job1->connection = 'database';
         $job1->queue = 'default';
         $job1->payload = '{}';
         $job1->exception = 'Exception';
         $job1->save();
 
-        $job2 = new FailedJob();
-        $job2->uuid = 'retry-option-2-'.uniqid();
+        $job2 = new FailedJob;
+        $job2->uuid = 'retry-option-2-' . uniqid();
         $job2->connection = 'database';
         $job2->queue = 'high';
         $job2->payload = '{}';
@@ -63,7 +63,7 @@ describe('queue options building', function () {
         $descriptions = ['all' => 'Retry all Jobs'];
 
         foreach ($queues as $queue) {
-            $descriptions[$queue] = 'Retry jobs from '.$queue.' queue';
+            $descriptions[$queue] = 'Retry jobs from ' . $queue . ' queue';
         }
 
         expect($descriptions['all'])->toBe('Retry all Jobs');
@@ -93,14 +93,14 @@ describe('retry command construction', function () {
 
     it('retry specific queue builds correct command', function () {
         $queue = 'high';
-        $command = 'queue:retry '.$queue;
+        $command = 'queue:retry ' . $queue;
 
         expect($command)->toBe('queue:retry high');
     });
 
     it('retry with queue name containing special characters', function () {
         $queue = 'my-custom-queue';
-        $command = 'queue:retry '.$queue;
+        $command = 'queue:retry ' . $queue;
 
         expect($command)->toBe('queue:retry my-custom-queue');
     });
@@ -109,7 +109,7 @@ describe('retry command construction', function () {
 describe('prune command construction', function () {
     it('prune builds command with hours parameter', function () {
         $hours = 24;
-        $command = 'queue:prune-failed --hours='.$hours;
+        $command = 'queue:prune-failed --hours=' . $hours;
 
         expect($command)->toBe('queue:prune-failed --hours=24');
     });
@@ -118,14 +118,14 @@ describe('prune command construction', function () {
         $testCases = [1, 12, 24, 48, 168];
 
         foreach ($testCases as $hours) {
-            $command = 'queue:prune-failed --hours='.$hours;
-            expect($command)->toBe('queue:prune-failed --hours='.$hours);
+            $command = 'queue:prune-failed --hours=' . $hours;
+            expect($command)->toBe('queue:prune-failed --hours=' . $hours);
         }
     });
 
     it('prune default hours is typically 24', function () {
         $defaultHours = 24;
-        $command = 'queue:prune-failed --hours='.$defaultHours;
+        $command = 'queue:prune-failed --hours=' . $defaultHours;
 
         expect($command)->toContain('--hours=24');
     });
@@ -135,16 +135,16 @@ describe('queue option merging', function () {
     it('merges distinct queues with all option', function () {
         $allOption = ['all' => 'All Queues'];
 
-        $job1 = new FailedJob();
-        $job1->uuid = 'merge-test-1-'.uniqid();
+        $job1 = new FailedJob;
+        $job1->uuid = 'merge-test-1-' . uniqid();
         $job1->connection = 'database';
         $job1->queue = 'emails';
         $job1->payload = '{}';
         $job1->exception = 'Exception';
         $job1->save();
 
-        $job2 = new FailedJob();
-        $job2->uuid = 'merge-test-2-'.uniqid();
+        $job2 = new FailedJob;
+        $job2->uuid = 'merge-test-2-' . uniqid();
         $job2->connection = 'database';
         $job2->queue = 'notifications';
         $job2->payload = '{}';

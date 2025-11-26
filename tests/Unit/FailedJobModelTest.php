@@ -12,7 +12,7 @@ beforeEach(function () {
 
 describe('FailedJob model', function () {
     it('can be instantiated', function () {
-        $model = new FailedJob();
+        $model = new FailedJob;
 
         expect($model)->toBeInstanceOf(FailedJob::class);
     });
@@ -20,7 +20,7 @@ describe('FailedJob model', function () {
     it('uses table name from config', function () {
         config(['queue.failed.table' => 'failed_jobs']);
 
-        $model = new FailedJob();
+        $model = new FailedJob;
 
         expect($model->getTable())->toBe('failed_jobs');
     });
@@ -28,7 +28,7 @@ describe('FailedJob model', function () {
     it('respects custom table name in config', function () {
         config(['queue.failed.table' => 'custom_failed_jobs']);
 
-        $model = new FailedJob();
+        $model = new FailedJob;
 
         expect($model->getTable())->toBe('custom_failed_jobs');
 
@@ -36,7 +36,7 @@ describe('FailedJob model', function () {
     });
 
     it('casts payload to string', function () {
-        $model = new FailedJob();
+        $model = new FailedJob;
 
         expect($model->getCasts())->toHaveKey('payload');
         expect($model->getCasts()['payload'])->toBe('string');
@@ -45,8 +45,8 @@ describe('FailedJob model', function () {
 
 describe('FailedJob database operations', function () {
     it('can create a failed job record', function () {
-        $job = new FailedJob();
-        $job->uuid = 'test-uuid-'.uniqid();
+        $job = new FailedJob;
+        $job->uuid = 'test-uuid-' . uniqid();
         $job->connection = 'database';
         $job->queue = 'default';
         $job->payload = json_encode(['displayName' => 'App\\Jobs\\TestJob']);
@@ -58,8 +58,8 @@ describe('FailedJob database operations', function () {
     });
 
     it('can query failed jobs', function () {
-        $job = new FailedJob();
-        $job->uuid = 'query-test-uuid-'.uniqid();
+        $job = new FailedJob;
+        $job->uuid = 'query-test-uuid-' . uniqid();
         $job->connection = 'database';
         $job->queue = 'default';
         $job->payload = json_encode(['displayName' => 'App\\Jobs\\QueryTestJob']);
@@ -72,9 +72,9 @@ describe('FailedJob database operations', function () {
     });
 
     it('can find a failed job by uuid', function () {
-        $uuid = 'find-test-uuid-'.uniqid();
+        $uuid = 'find-test-uuid-' . uniqid();
 
-        $job = new FailedJob();
+        $job = new FailedJob;
         $job->uuid = $uuid;
         $job->connection = 'redis';
         $job->queue = 'high';
@@ -91,9 +91,9 @@ describe('FailedJob database operations', function () {
     });
 
     it('can delete a failed job', function () {
-        $uuid = 'delete-test-uuid-'.uniqid();
+        $uuid = 'delete-test-uuid-' . uniqid();
 
-        $job = new FailedJob();
+        $job = new FailedJob;
         $job->uuid = $uuid;
         $job->connection = 'database';
         $job->queue = 'default';
@@ -107,10 +107,10 @@ describe('FailedJob database operations', function () {
     });
 
     it('stores and retrieves payload as string', function () {
-        $uuid = 'payload-test-uuid-'.uniqid();
+        $uuid = 'payload-test-uuid-' . uniqid();
         $payloadData = ['displayName' => 'App\\Jobs\\PayloadTestJob', 'data' => ['key' => 'value']];
 
-        $job = new FailedJob();
+        $job = new FailedJob;
         $job->uuid = $uuid;
         $job->connection = 'database';
         $job->queue = 'default';
@@ -125,10 +125,10 @@ describe('FailedJob database operations', function () {
     });
 
     it('can filter jobs by connection', function () {
-        $uuid1 = 'conn-test-1-'.uniqid();
-        $uuid2 = 'conn-test-2-'.uniqid();
+        $uuid1 = 'conn-test-1-' . uniqid();
+        $uuid2 = 'conn-test-2-' . uniqid();
 
-        $job1 = new FailedJob();
+        $job1 = new FailedJob;
         $job1->uuid = $uuid1;
         $job1->connection = 'database';
         $job1->queue = 'default';
@@ -136,7 +136,7 @@ describe('FailedJob database operations', function () {
         $job1->exception = 'Exception 1';
         $job1->save();
 
-        $job2 = new FailedJob();
+        $job2 = new FailedJob;
         $job2->uuid = $uuid2;
         $job2->connection = 'redis';
         $job2->queue = 'default';
@@ -153,10 +153,10 @@ describe('FailedJob database operations', function () {
     });
 
     it('can filter jobs by queue', function () {
-        $uuid1 = 'queue-test-1-'.uniqid();
-        $uuid2 = 'queue-test-2-'.uniqid();
+        $uuid1 = 'queue-test-1-' . uniqid();
+        $uuid2 = 'queue-test-2-' . uniqid();
 
-        $job1 = new FailedJob();
+        $job1 = new FailedJob;
         $job1->uuid = $uuid1;
         $job1->connection = 'database';
         $job1->queue = 'high';
@@ -164,7 +164,7 @@ describe('FailedJob database operations', function () {
         $job1->exception = 'High priority exception';
         $job1->save();
 
-        $job2 = new FailedJob();
+        $job2 = new FailedJob;
         $job2->uuid = $uuid2;
         $job2->connection = 'database';
         $job2->queue = 'low';
@@ -181,11 +181,11 @@ describe('FailedJob database operations', function () {
     });
 
     it('can get distinct connections', function () {
-        $uuid1 = 'distinct-conn-1-'.uniqid();
-        $uuid2 = 'distinct-conn-2-'.uniqid();
-        $uuid3 = 'distinct-conn-3-'.uniqid();
+        $uuid1 = 'distinct-conn-1-' . uniqid();
+        $uuid2 = 'distinct-conn-2-' . uniqid();
+        $uuid3 = 'distinct-conn-3-' . uniqid();
 
-        $job1 = new FailedJob();
+        $job1 = new FailedJob;
         $job1->uuid = $uuid1;
         $job1->connection = 'database';
         $job1->queue = 'default';
@@ -193,7 +193,7 @@ describe('FailedJob database operations', function () {
         $job1->exception = 'Exception';
         $job1->save();
 
-        $job2 = new FailedJob();
+        $job2 = new FailedJob;
         $job2->uuid = $uuid2;
         $job2->connection = 'redis';
         $job2->queue = 'default';
@@ -201,7 +201,7 @@ describe('FailedJob database operations', function () {
         $job2->exception = 'Exception';
         $job2->save();
 
-        $job3 = new FailedJob();
+        $job3 = new FailedJob;
         $job3->uuid = $uuid3;
         $job3->connection = 'database';
         $job3->queue = 'default';

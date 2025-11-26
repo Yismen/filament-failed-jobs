@@ -16,7 +16,7 @@ describe('payload formatting', function () {
 
         $decoded = json_decode($payload, true);
         $prettyPrinted = htmlspecialchars(json_encode($decoded, JSON_PRETTY_PRINT));
-        $result = '<pre style="overflow-x: auto; line-height: 2">'.$prettyPrinted.'</pre>';
+        $result = '<pre style="overflow-x: auto; line-height: 2">' . $prettyPrinted . '</pre>';
 
         expect($result)->toContain('&lt;script&gt;');
         expect($result)->not->toContain('<script>');
@@ -55,7 +55,7 @@ describe('exception formatting', function () {
     it('converts newlines to br tags', function () {
         $exception = "Line 1\nLine 2\nLine 3";
 
-        $result = '<div style="line-height: 2">'.nl2br($exception).'</div>';
+        $result = '<div style="line-height: 2">' . nl2br($exception) . '</div>';
 
         expect($result)->toContain('<br />');
         expect($result)->toContain('Line 1');
@@ -66,7 +66,7 @@ describe('exception formatting', function () {
     it('handles exception with stack trace', function () {
         $exception = "ErrorException: Something went wrong\n#0 /path/to/file.php(123): function()\n#1 {main}";
 
-        $result = '<div style="line-height: 2">'.nl2br($exception).'</div>';
+        $result = '<div style="line-height: 2">' . nl2br($exception) . '</div>';
 
         expect($result)->toContain('ErrorException');
         expect($result)->toContain('#0');
@@ -76,7 +76,7 @@ describe('exception formatting', function () {
     it('handles empty exception', function () {
         $exception = '';
 
-        $result = '<div style="line-height: 2">'.nl2br($exception).'</div>';
+        $result = '<div style="line-height: 2">' . nl2br($exception) . '</div>';
 
         expect($result)->toBe('<div style="line-height: 2"></div>');
     });
@@ -84,7 +84,7 @@ describe('exception formatting', function () {
     it('handles long exception messages', function () {
         $exception = str_repeat('Error message. ', 100);
 
-        $result = '<div style="line-height: 2">'.nl2br($exception).'</div>';
+        $result = '<div style="line-height: 2">' . nl2br($exception) . '</div>';
 
         expect(strlen($result))->toBeGreaterThan(1000);
     });
@@ -109,7 +109,7 @@ describe('XSS protection', function () {
     it('exception field preserves HTML', function () {
         $maliciousException = '<script>alert("xss")</script>';
 
-        $result = '<div style="line-height: 2">'.nl2br($maliciousException).'</div>';
+        $result = '<div style="line-height: 2">' . nl2br($maliciousException) . '</div>';
 
         expect($result)->toContain('<script>');
     });
