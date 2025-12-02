@@ -31,7 +31,7 @@ class FailedJobResource extends Resource
             ->defaultSort('id', 'desc');
     }
 
-    private static function getPlugin(): FilamentFailedJobsPlugin
+    protected static function getPlugin(): FilamentFailedJobsPlugin
     {
         /** @var FilamentFailedJobsPlugin */
         return filament('failed-jobs');
