@@ -2,6 +2,14 @@
 
 All notable changes to `binarybuilds/filament-failed-jobs` will be documented in this file.
 
+## v2.0.0 - 2025-12-04
+
+### What's Changed
+
+* [fixes #4] fixed compatibility issue with mariadb,sqlite and other database providers by @srinathreddydudi in https://github.com/binarybuilds/filament-failed-jobs/pull/8
+
+**Full Changelog**: https://github.com/binarybuilds/filament-failed-jobs/compare/v1.1.1...v2.0.0
+
 ## v1.1.1 - 2025-12-03
 
 ### What's Changed
