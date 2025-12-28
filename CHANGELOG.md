@@ -2,6 +2,14 @@
 
 All notable changes to `binarybuilds/filament-failed-jobs` will be documented in this file.
 
+## v2.0.1 - 2025-12-28
+
+### What's Changed
+
+* fixes #9: addressed compatibility issue with postgres by @srinathreddydudi in https://github.com/binarybuilds/filament-failed-jobs/pull/11
+
+**Full Changelog**: https://github.com/binarybuilds/filament-failed-jobs/compare/v2.0.0...v2.0.1
+
 ## v2.0.0 - 2025-12-04
 
 ### What's Changed
